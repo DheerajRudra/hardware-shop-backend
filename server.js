@@ -17,7 +17,6 @@ app.use('/api/products',  require('./products'));
 app.use('/api/customers', require('./customers'));
 app.use('/api/bills',     require('./bills'));
 app.use('/api/vendors',   require('./vendors'));
-
 app.get('/', (req, res) => res.send('Hardware Shop API running'));
 
 const PORT = process.env.PORT || 5000;
