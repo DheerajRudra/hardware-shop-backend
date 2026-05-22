@@ -13,10 +13,10 @@ mongoose.connect(MONGO_URI)
   .then(() => console.log('✅ MongoDB connected'))
   .catch(err => console.log('❌ MongoDB error:', err));
 
-app.use('/api/products',  require('./routes/products'));
-app.use('/api/customers', require('./routes/customers'));
-app.use('/api/bills',     require('./routes/bills'));
-app.use('/api/vendors',   require('./routes/vendors'));
+app.use('/api/products',  require('./products'));
+app.use('/api/customers', require('./customers'));
+app.use('/api/bills',     require('./bills'));
+app.use('/api/vendors',   require('./vendors'));
 
 app.get('/', (req, res) => res.send('Hardware Shop API running'));
 
