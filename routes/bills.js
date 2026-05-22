@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const Bill = require('../models/Bill');
-const Product = require('../models/Product');
+const Bill    = require('./Bill');
+const Product = require('./Product');
 
 // GET all bills
 router.get('/', async (req, res) => {
