@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Vendor = require('../models/Vendor');
+const Vendor = require('./Vendor');
 
 // GET all vendors
 router.get('/', async (req, res) => {
