@@ -38,6 +38,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// POST add a purchase
 router.post('/:id/purchases', async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
@@ -50,6 +51,35 @@ router.post('/:id/purchases', async (req, res) => {
   }
 });
 
+// SOFT DELETE a purchase (mark as deleted)
+router.put('/:id/purchases/:pid/delete', async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    const purchase = customer.purchases.id(req.params.pid);
+    if (!purchase) return res.status(404).json({ error: 'Purchase not found' });
+    purchase.deleted = true;
+    await customer.save();
+    res.json(customer);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// RESTORE a purchase
+router.put('/:id/purchases/:pid/restore', async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    const purchase = customer.purchases.id(req.params.pid);
+    if (!purchase) return res.status(404).json({ error: 'Purchase not found' });
+    purchase.deleted = false;
+    await customer.save();
+    res.json(customer);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// PERMANENT delete a purchase
 router.delete('/:id/purchases/:pid', async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
