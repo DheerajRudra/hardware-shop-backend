@@ -4,7 +4,8 @@ const PurchaseSchema = new mongoose.Schema({
   itemName: { type: String, required: true },
   price:    { type: Number, required: true },
   qty:      { type: Number, default: 1 },
-  date:     { type: Date, default: Date.now }
+  date:     { type: Date, default: Date.now },
+  deleted:  { type: Boolean, default: false }
 });
 
 const CustomerSchema = new mongoose.Schema({
